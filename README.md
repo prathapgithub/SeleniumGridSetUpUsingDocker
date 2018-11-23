@@ -20,7 +20,7 @@ Command to start firefox node in debug mode
 Command to start chrome node in debug mode
 
   docker run -d -p 5900:5900 --name chrome-node-debug --link selenium-hub:hub selenium/node-chrome-debug
-
+-----------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-----------------------------------------------
 Another Way where we added network:
 
 docker network create grid
@@ -30,3 +30,7 @@ docker run -d -p 4444:4444 --net grid --name selenium-hub selenium/hub
 docker run -d --net grid --name node-chrome -e HUB_HOST=selenium-hub selenium/node-chrome
 
 docker run -d --net grid --name node-chrome-debug -e HUB_HOST=selenium-hub selenium/node-chrome-debug
+--------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-------------------------------------------------
+curl command to install docker,
+>curl -SSL https://get.docker.com/sh
+
