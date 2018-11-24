@@ -1,0 +1,45 @@
+Docker Swarm - Deploying a Selenium grid
+
+Objective : To be able run more than 10 browsers and using multiple machines(Server1,2).
+
+
+Pre Req.  - 
+
+Docker Swarm requires few ports to be open for it to work. These are
+-TCP port 2377. This port is used for communication between the nodes of a Docker Swarm or cluster. It only needs to be opened on manager nodes.
+-TCP and UDP port 7946 for communication among nodes (container network discovery).
+-UDP port 4789 for overlay network traffic (container ingress networking).
+
+
+Install 
+First install docker on all 2 machines.eg Server 1,2
+> curl -SsL https://get.docker.com | sh
+
+Then add the ubuntu user to the docker group, so we don’t need to use sudo everytime we use the docker command
+> sudo usermod -aG docker ubuntu
+
+On Server 1
+> docker swarm init --advertise-addr=82.66.x.x   // Here 82.66.x.x is the public IP of the machine.
+
+Now docker swarm is ready and nodes can connect to it, ssh into the Server 2 grid machine and run the following command
+On Server 2
+> docker swarm join --token SWMTKN-1-5rm2sib935txv5k13j6leaqsfuuttalktt7jv4s55249izjf54-8ia31tagc4sbehqeqiqst4jfz 172.30.x.x:2377
+> docker info
+
+
+Run the following command to deploy docker swarm  -- https://goo.gl/Fsq6fu
+> docker stack deploy --compose-file grid.yaml tangoCharlie
+
+
+To view status of the docker swarm
+> docker stack ps tangoCharlie
+
+
+To shut down docker swarm
+> docker stack rm tangoCharlie
+
+To debug a specific container
+> docker logs -f <container-id>
+
+To leave docker swarm, type the following command both on manager node and worker node
+> docker swarm leave —force
