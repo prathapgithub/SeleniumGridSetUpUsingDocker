@@ -1,0 +1,5 @@
+#command deletes all containers that have a status of exited
+$ docker rm $(docker ps -a -q -f status=exited)
+
+In later versions of Docker, the docker container prune command can be used to achieve the same effect.
+
