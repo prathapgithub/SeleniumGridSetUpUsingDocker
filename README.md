@@ -30,6 +30,7 @@ docker run -d -p 4444:4444 --net grid --name selenium-hub selenium/hub
 docker run -d --net grid --name node-chrome -e HUB_HOST=selenium-hub selenium/node-chrome
 
 docker run -d --net grid --name node-chrome-debug -e HUB_HOST=selenium-hub selenium/node-chrome-debug
+docker run -d -p 5902:5900 --name chrome-node-debug2 -e NODE_MAX_INSTANCES=5 --link selenium-hub:hub selenium/node-chrome-debug
 --------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-------------------------------------------------
 curl command to install docker,
 >curl -SSL https://get.docker.com/sh
